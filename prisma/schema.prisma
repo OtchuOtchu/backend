@@ -51,12 +51,12 @@ model Clothes {
   weather String
   minTemperature Float
   maxTemperature Float
-  image Image[]
+  image Images[]
   favourites Favourites[]
   stylecapture StyleCapture[]
 }
 
-model Image {
+model Images {
   id         Int     @id @default(autoincrement())
   imageUrl   String
   clothingId  Int
