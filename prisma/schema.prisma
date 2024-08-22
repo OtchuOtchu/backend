@@ -37,9 +37,9 @@ model StyleSets {
 
 model StyleCapture {
   styleSet StyleSets @relation(fields: [styleSetId], references: [id])
-  styleSetId Int @unique
+  styleSetId Int 
   clothing Clothes @relation(fields: [clothingId], references: [id])
-  clothingId Int @unique
+  clothingId Int 
 
   @@id([styleSetId, clothingId])
 }
@@ -65,7 +65,7 @@ model Image {
 
 model Favourites {
   user User @relation(fields: [userId], references: [id])
-  userId Int @unique
+  userId Int 
   clothing Clothes @relation(fields: [clothingId], references: [id])
   clothingId Int 
   @@id([userId, clothingId])
