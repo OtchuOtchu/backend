@@ -8,11 +8,13 @@ const PORT = 4000;
 
 const usersRouter = require("./routes/users.router");
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
 
-app.use("/users", usersRouter);
+app.use("/api/users", usersRouter);
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`);
 });
