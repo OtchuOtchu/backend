@@ -51,16 +51,9 @@ model Clothes {
   weather String
   minTemperature Float
   maxTemperature Float
-  image Images[]
+  image String
   favourites Favourites[]
   stylecapture StyleCapture[]
-}
-
-model Images {
-  id         Int     @id @default(autoincrement())
-  imageUrl   String
-  clothingId  Int
-  clothing    Clothes  @relation(fields: [clothingId], references: [id])
 }
 
 model Favourites {
