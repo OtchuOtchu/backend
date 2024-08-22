@@ -17,7 +17,6 @@ app.use(express.urlencoded({ extended: true })); // URL-encoded 바디 파싱
 
 // 라우터 설정
 app.use('/api/clothes', clothesRouter);
-app.use('/api/users', usersRouter); // usersRouter도 설정해줍니다.
 
 // 기본 라우트 설정 (선택적)
 app.get('/', (req, res) => {
@@ -42,7 +41,8 @@ app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
 
-// 서버 시작
+app.use("/api/users", usersRouter);
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
