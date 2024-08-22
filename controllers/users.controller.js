@@ -2,8 +2,14 @@ const user = require("../models/users.model");
 
 async function getUser(req, res) {
   try {
-    const { userId } = req.body;
+    const userId = Number(req.params.userId);
     const userData = await user.getUserData(userId);
+    console.log(userData);
+
+    if (!userData) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
     res.json(userData);
   } catch (error) {
     console.error(error);
