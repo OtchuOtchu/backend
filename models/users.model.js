@@ -11,9 +11,6 @@ async function getUserData(id) {
   return getUser;
 }
 
-<<<<<<< Updated upstream
-module.exports = { getUserData };
-=======
 async function getUpdateUserData({
   userId,
   name,
@@ -40,4 +37,3 @@ async function getUpdateUserData({
 }
 
 module.exports = { getUserData, getUpdateUserData };
->>>>>>> Stashed changes
