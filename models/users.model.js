@@ -11,7 +11,7 @@ async function getUserData(id) {
   return getUser;
 }
 
-async function getUpdateUserData({
+async function updateUserData({
   userId,
   name,
   email,
@@ -36,4 +36,4 @@ async function getUpdateUserData({
   return updateUser;
 }
 
-module.exports = { getUserData, getUpdateUserData };
+module.exports = { getUserData, updateUserData };

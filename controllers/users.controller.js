@@ -23,9 +23,11 @@ async function getUser(req, res) {
 
 async function updateUser(req, res) {
   try {
+    const userId = Number(req.params.userId);
     const userData = req.body;
 
-    const updatedUser = await getUpdateUserData({
+    const updatedUser = await user.updateUserData({
+      userId: userId,
       name: userData.name,
       email: userData.email,
       height: userData.height,
@@ -33,6 +35,7 @@ async function updateUser(req, res) {
       style: userData.style,
       sex: userData.sex,
     });
+    console.log(updateUser);
 
     res.json(updatedUser);
   } catch (error) {
