@@ -36,6 +36,11 @@ process.on('SIGINT', async () => {
   console.log('PrismaClient disconnected');
   process.exit(0);
 });
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Hello, World!");
+});
 
 // 서버 시작
 app.listen(PORT, () => {
