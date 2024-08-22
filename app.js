@@ -7,6 +7,7 @@ const prisma = new PrismaClient();
 const PORT = 4000;
 
 const usersRouter = require("./routes/users.router");
+const clothesRouter = require("./routes/clothes.router");
 
 app.use(express.json());
 
@@ -15,6 +16,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", usersRouter);
+app.use("/api/clothes", clothesRouter);
+
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`);
 });
