@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", usersRouter);
 app.use("/api/clothes", clothesRouter);
+app.use("/api/favourites", favouritesRouter);
 
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`);

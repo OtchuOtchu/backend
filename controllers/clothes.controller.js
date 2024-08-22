@@ -1,5 +1,5 @@
 //getRecommendedClothes(req, res): 옷 추천 처리
-//postAddClothes(req, res): 새로운 옷 추가 처리
+//createClothes(req, res): 새로운 옷 추가 처리
 
 const ClothesModel = require('../models/clothes.model');
 
@@ -11,6 +11,7 @@ async function getRecommendedClothes(req, res) {
     console.log(clothes);
     res.status(200).json({ recommendations: clothes });
   } catch (error) {
+    console.error('Error in getRecommendedClothes:', error); // 오류 로그 추가
     res.status(500).json({ error: error.message });
   }
 }

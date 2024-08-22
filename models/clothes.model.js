@@ -39,17 +39,20 @@ async function getRecommendedClothes(weather, minTemp, maxTemp) {
 }
 
 async function createClothes(clothesData) {
-  const { user_id, category, weather, minTemperature, maxTemperature, image_url } = clothesData;
+  const { name, category, weather, minTemperature, maxTemperature, image } = clothesData;
   const newClothes = await prisma.clothes.create({
     data: {
-      user: { connect: { id: parseInt(user_id) } },
+      name,
       category,
       weather,
       minTemperature: parseFloat(minTemperature), // Ensure minTemperature is a float
       maxTemperature: parseFloat(maxTemperature), // Ensure maxTemperature is a float
-      image: image_url
+      image: image
     }
   });
+
+
+
 
   return newClothes;
 }

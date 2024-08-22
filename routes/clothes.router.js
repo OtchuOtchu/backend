@@ -7,5 +7,3 @@ clothesRouter.post('/add', clothesController.createClothes); // 수정됨
 
 
 module.exports = clothesRouter;
-
-
