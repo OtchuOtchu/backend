@@ -10,27 +10,32 @@ async function getRecommendedClothes(weather, minTemp, maxTemp) {
     throw new Error('Invalid temperature values provided.');
   }
 
-  const clothes = await prisma.clothes.findMany({
-    where: {
-      weather: weather,
-      minTemperature: {
-        lte: maxTemperature // Ensure maxTemperature is used correctly
+  try {
+    const clothes = await prisma.clothes.findMany({
+      where: {
+        weather: weather,
+        minTemperature: {
+          lte: maxTemperature // Ensure maxTemperature is used correctly
+        },
+        maxTemperature: {
+          gte: minTemperature // Ensure minTemperature is used correctly
+        }
       },
-      maxTemperature: {
-        gte: minTemperature // Ensure minTemperature is used correctly
+      select: {
+        id: true,
+        name: true,
+        category: true
+      },
+      orderBy: {
+        category: 'asc'
       }
-    },
-    select: {
-      id: true,
-      name: true,
-      category: true
-    },
-    orderBy: {
-      category: 'asc'
-    }
-  });
+    });
 
-  return clothes;
+    return clothes;
+  } catch (error) {
+    console.error('Error in getRecommendedClothes model:', error); // 오류 로그 추가
+    throw error; // 오류를 다시 던져서 컨트롤러에서 처리하도록 합니다.
+  }
 }
 
 async function createClothes(clothesData) {

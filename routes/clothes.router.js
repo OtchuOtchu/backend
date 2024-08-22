@@ -1,7 +1,11 @@
 const express = require("express");
-const usersRouter = express.Router();
-const usersController = require("../controllers/users.controller");
+const clothesRouter = express.Router();
+const clothesController = require("../controllers/clothes.controller");
 
-usersRouter.get("/", usersController.getUser);
+clothesRouter.get('/', clothesController.getRecommendedClothes); // 수정됨
+clothesRouter.post('/add', clothesController.createClothes); // 수정됨
 
-module.exports = usersRouter;
+
+module.exports = clothesRouter;
+
+
