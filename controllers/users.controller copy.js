@@ -1,3 +1,7 @@
+//postUser(req, res): 회원가입 처리
+//getUser(req, res): 사용자 정보 가져오기
+//updateUser(req, res): 사용자 정보 수정
+
 const user = require("../models/users.model");
 
 async function getUser(req, res) {
