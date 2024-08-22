@@ -2,10 +2,10 @@ const { Prisma, PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-async function getUserData() {
+async function getUserData(id) {
   const getUser = await prisma.user.findUnique({
     where: {
-      id: 1,
+      id: id,
     },
   });
   return getUser;
