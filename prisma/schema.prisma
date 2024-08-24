@@ -23,21 +23,21 @@ model User {
   style String
   sex String
   favourites Favourites[]
-  styleSets StyleSets? 
+  styleSets StyleSets[]
 }
 
 model StyleSets {
   id Int @id @default(autoincrement())
   user User @relation(fields: [userId], references: [id])
-  userId Int @unique
-  createdAt DateTime
+  userId Int 
+  createdAt DateTime @default(now())
   weather String
   styleCapture StyleCapture[]
 }
 
 model StyleCapture {
   styleSet StyleSets @relation(fields: [styleSetId], references: [id])
-  styleSetId Int 
+  styleSetId Int
   clothing Clothes @relation(fields: [clothingId], references: [id])
   clothingId Int 
 
