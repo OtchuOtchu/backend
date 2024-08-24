@@ -3,14 +3,27 @@ const { Prisma, PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function getFavouriteData(userId) {
-  const getFavourite = await prisma.favourites.findUnique({
+  const getFavourites = await prisma.favourites.findMany({
     where: {
-      id: userId,
+      userId: userId,
     },
     select: {
-      category: true,
-      weather: true,
+      clothing: {
+        select: {
+          category: true,
+          weather: true,
+          image: true,
+        },
+      },
     },
   });
-  return getFavourite;
+
+  const clothingArray = getFavourites.map((favourite) => favourite.clothing);
+
+  const response = {
+    clothes: clothingArray,
+  };
+  return response;
 }
+
+module.exports = { getFavouriteData };

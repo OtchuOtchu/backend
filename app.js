@@ -8,6 +8,7 @@ const PORT = 4000;
 
 const usersRouter = require("./routes/users.router");
 const clothesRouter = require("./routes/clothes.router");
+const favouritesRouter = require("./routes/favourites.router");
 
 app.use(express.json());
 
