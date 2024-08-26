@@ -52,8 +52,6 @@ async function createClothes(clothesData) {
   });
 
 
-
-
   return newClothes;
 }
 
