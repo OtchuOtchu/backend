@@ -2,7 +2,7 @@ const { Prisma, PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-async function getFavouriteData(userId) {
+async function postLikeClothes(userId) {
   const getFavourite = await prisma.favourites.findUnique({
     where: {
       id: userId,
