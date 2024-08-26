@@ -30,8 +30,8 @@ async function postFavouritesData(userId, clothingId){
   try {
     const newFavourite = await prisma.favourites.create({
       data: {
-        userId: userId,
-        clothingId: clothingId,
+        userId: Number(userId),
+        clothingId: Number(clothingId),
       },
     });
     return newFavourite;

@@ -48,4 +48,33 @@ async function getStyleSetsData(userId) {
   return response;
 }
 
-module.exports = { getUserData, getStyleSetsData };
+async function createStyleSetsData(userId, created, weather, clothes) {
+  try {
+    // 1. Create a new StyleSet record
+    const newStyleSet = await prisma.styleSets.create({
+      data: {
+        userId: userId,
+        createdAt: new Date(created),
+        weather: weather,
+      },
+    });
+
+    // 2. Create StyleCapture records for each clothing item
+    const styleCaptureRecords = clothes.map(({ clothingId }) => ({
+      styleSetId: newStyleSet.id,
+      clothingId: clothingId,
+    }));
+
+    await prisma.styleCapture.createMany({
+      data: styleCaptureRecords,
+    });
+
+    return newStyleSet;
+  } catch (error) {
+    console.error("Failed to create style set:", error);
+    throw new Error("Failed to create style set");
+  }
+}
+
+
+module.exports = { getUserData, getStyleSetsData, createStyleSetsData };
