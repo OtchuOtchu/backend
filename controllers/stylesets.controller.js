@@ -13,4 +13,17 @@ async function getStyleSets(req, res) {
   }
 }
 
-module.exports = { getStyleSets };
+async function postStyleSets(req, res) {
+  const { userId, created, weather, clothes } = req.body;
+  try {
+    const newStyleSet = await StyleSetsModel.createStyleSetsData(userId, created, weather, clothes);
+    res.status(200).json({ 
+      message: "Style set and style captures created successfully",
+      styleSet: newStyleSet,
+    });
+  } catch (error) {
+    res.status(200).json({ error: error.message }) // 여기에서 오타가 있습니다.
+  }
+}
+
+module.exports = { getStyleSets, postStyleSets };
