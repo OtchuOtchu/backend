@@ -13,4 +13,15 @@ async function getFavouritesClothes(req, res) {
   }
 }
 
-module.exports = { getFavouritesClothes };
+async function postFavouritesClothes(req, res) {
+  try {
+    const { userId, clothingId } = req.body;
+    const postFavourites = await FavouritesModel.postFavouritesData(userId, clothingId);
+    res.status(200).json({ favourites: postFavourites });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+
+module.exports = { getFavouritesClothes, postFavouritesClothes };

@@ -26,4 +26,19 @@ async function getFavouriteData(userId) {
   return response;
 }
 
-module.exports = { getFavouriteData };
+async function postFavouritesData(userId, clothingId){
+  try {
+    const newFavourite = await prisma.favourites.create({
+      data: {
+        userId: userId,
+        clothingId: clothingId,
+      },
+    });
+    return newFavourite;
+  } catch (error) {
+    throw new Error("Failed to add to favourites: " + error.message);
+  }
+  
+}
+
+module.exports = { getFavouriteData, postFavouritesData };
