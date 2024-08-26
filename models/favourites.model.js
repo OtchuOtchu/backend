@@ -2,15 +2,43 @@ const { Prisma, PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-async function postLikeClothes(userId) {
-  const getFavourite = await prisma.favourites.findUnique({
+async function getFavouriteData(userId) {
+  const getFavourites = await prisma.favourites.findMany({
     where: {
-      id: userId,
+      userId: userId,
     },
     select: {
-      category: true,
-      weather: true,
+      clothing: {
+        select: {
+          category: true,
+          weather: true,
+          image: true,
+        },
+      },
     },
   });
-  return getFavourite;
+
+  const clothingArray = getFavourites.map((favourite) => favourite.clothing);
+
+  const response = {
+    clothes: clothingArray,
+  };
+  return response;
 }
+
+async function postFavouritesData(userId, clothingId){
+  try {
+    const newFavourite = await prisma.favourites.create({
+      data: {
+        userId: userId,
+        clothingId: clothingId,
+      },
+    });
+    return newFavourite;
+  } catch (error) {
+    throw new Error("Failed to add to favourites: " + error.message);
+  }
+  
+}
+
+module.exports = { getFavouriteData, postFavouritesData };

@@ -3,17 +3,6 @@
 
 const FavouritesModel = require("../models/favourites.model");
 
-
-async function postFavouritesClothes(req, res) {
-  try {
-
-
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
-
-
 async function getFavouritesClothes(req, res) {
   try {
     const userId = Number(req.params.userId);
@@ -24,4 +13,15 @@ async function getFavouritesClothes(req, res) {
   }
 }
 
-module.exports = { postFavouritesClothes, getFavouritesClothes };
+async function postFavouritesClothes(req, res) {
+  try {
+    const { userId, clothingId } = req.body;
+    const postFavourites = await FavouritesModel.postFavouritesData(userId, clothingId);
+    res.status(200).json({ favourites: postFavourites });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+
+module.exports = { getFavouritesClothes, postFavouritesClothes };
