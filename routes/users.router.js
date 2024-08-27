@@ -4,5 +4,6 @@ const usersController = require("../controllers/users.controller");
 
 usersRouter.get("/:userId", usersController.getUser);
 usersRouter.patch("/update/:userId", usersController.updateUser);
+usersRouter.post("/post", usersController.postUser);
 
 module.exports = usersRouter;
