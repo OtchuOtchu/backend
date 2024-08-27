@@ -1,5 +1,5 @@
 const jwt = require("../utils/jwt-util");
-const redisClient = require("../utils/redis");
+// const redisClient = require("../utils/redis");
 const firebase = require("../utils/firebase");
 const loginModel = require("../utils/login.model");
 
@@ -16,7 +16,7 @@ async function login(req, res) {
       const refreshToken = jwt.refresh();
 
       // 발급한 refresh token을 redis에 key를 user의 id로 하여 저장합니다.
-      redisClient.set(user.id, refreshToken);
+
 
       res.status(200).send({
         ok: true,
