@@ -15,6 +15,9 @@ async function getRefreshToken(uid) {
     where: {
       userId: uid,
     },
+    select: {
+      refreshToken: true,
+    },
   });
   return getRefreshToken;
 }

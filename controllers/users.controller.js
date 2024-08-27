@@ -48,10 +48,11 @@ async function updateUser(req, res) {
 
 async function postUser(req, res) {
   try {
+    const uid = req.uid;
     const userData = req.body;
 
     const postUser = await user.postUserData({
-      uid: userData.uid,
+      uid: uid,
       name: userData.name,
       email: userData.email,
       height: userData.height,
