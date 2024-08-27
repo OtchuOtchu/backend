@@ -11,7 +11,7 @@ const clothesRouter = require("./routes/clothes.router");
 const favouritesRouter = require("./routes/favourites.router");
 const styleSetsRouter = require("./routes/styleSets.router");
 const loginRouter = require("./routes/login.router");
-const signinRouter = require("./routes/login.router");
+const refreshRouter = require("./routes/refresh.router");
 
 app.use(express.json());
 
@@ -24,7 +24,7 @@ app.use("/api/clothes", clothesRouter);
 app.use("/api/favourites", favouritesRouter);
 app.use("/api/styleSets", styleSetsRouter);
 app.use("/api/login", loginRouter);
-app.use("/api/signin", signinRouter);
+app.use("/api/refresh", refreshRouter);
 
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`);
