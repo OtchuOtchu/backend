@@ -36,4 +36,19 @@ async function updateUserData({
   return updateUser;
 }
 
-module.exports = { getUserData, updateUserData };
+async function postUserData({ uid, name, email, height, weight, style, sex }) {
+  const updateUser = await prisma.user.create({
+    data: {
+      uid: uid,
+      name: name,
+      email: email,
+      height: height,
+      weight: weight,
+      style: style,
+      sex: sex,
+    },
+  });
+  return updateUser;
+}
+
+module.exports = { getUserData, updateUserData, postUserData };
