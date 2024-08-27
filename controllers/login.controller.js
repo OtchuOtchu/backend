@@ -17,7 +17,7 @@ async function login(req, res) {
       const refreshToken = jwt.refresh();
 
       // 발급한 refresh token을 redis에 key를 user의 id로 하여 저장합니다.
-      const what = await refreshTokenModel.postRefreshToken(uid, refreshToken);
+      refreshTokenModel.postRefreshToken(uid, refreshToken);
 
       res.status(200).send({
         ok: true,
