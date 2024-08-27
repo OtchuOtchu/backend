@@ -45,7 +45,6 @@ async function createStyleSetsData(uid, created, weather, clothes) {
     const newStyleSet = await prisma.styleSets.create({
       data: {
         uid: uid,
-        createdAt: new Date(created),
         weather: weather,
       },
     });
