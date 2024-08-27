@@ -2,19 +2,10 @@ const { Prisma, PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-async function getUserData() {
-  const getUser = await prisma.user.findUnique({
-    where: {
-      id: 1,
-    },
-  });
-  return getUser;
-}
-
-async function getStyleSetsData(userId) {
+async function getStyleSetsData(uid) {
   const getStyleSets = await prisma.styleSets.findMany({
     where: {
-      userId: userId,
+      uid: uid,
     },
     select: {
       id: true,
@@ -48,12 +39,12 @@ async function getStyleSetsData(userId) {
   return response;
 }
 
-async function createStyleSetsData(userId, created, weather, clothes) {
+async function createStyleSetsData(uid, created, weather, clothes) {
   try {
     // 1. Create a new StyleSet record
     const newStyleSet = await prisma.styleSets.create({
       data: {
-        userId: userId,
+        uid: uid,
         createdAt: new Date(created),
         weather: weather,
       },
@@ -76,5 +67,4 @@ async function createStyleSetsData(userId, created, weather, clothes) {
   }
 }
 
-
-module.exports = { getUserData, getStyleSetsData, createStyleSetsData };
+module.exports = { getStyleSetsData, createStyleSetsData };
