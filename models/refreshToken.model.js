@@ -10,5 +10,16 @@ async function postRefreshToken({ uid, refreshToken }) {
   });
   return createRefreshToken;
 }
+async function getRefreshToken(uid) {
+  const getRefreshToken = await prisma.refreshToken.findUnique({
+    where: {
+      userId: uid,
+    },
+    select: {
+      refreshToken: true,
+    },
+  });
+  return getRefreshToken;
+}
 
-module.exports = { postRefreshToken };
+module.exports = { postRefreshToken, getRefreshToken };
