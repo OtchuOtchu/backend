@@ -2,17 +2,17 @@ const { Prisma, PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-async function getUserData(id) {
+async function getUserData(uid) {
   const getUser = await prisma.user.findUnique({
     where: {
-      id: id,
+      uid: uid,
     },
   });
   return getUser;
 }
 
 async function updateUserData({
-  userId,
+  uid,
   name,
   email,
   height,
@@ -22,7 +22,7 @@ async function updateUserData({
 }) {
   const updateUser = await prisma.user.update({
     where: {
-      id: userId,
+      uid: uid,
     },
     data: {
       name: name,
