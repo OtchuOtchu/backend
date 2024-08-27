@@ -23,6 +23,7 @@ model User {
   sex String
   favourites Favourites[]
   styleSets StyleSets[]
+  refreshToken RefreshToken?
 }
 
 model StyleSets {
@@ -61,4 +62,10 @@ model Favourites {
   clothing Clothes @relation(fields: [clothingId], references: [id])
   clothingId Int 
   @@id([userId, clothingId])
+}
+
+model RefreshToken {
+  user User @relation(fields: [userId], references: [uid])
+  userId Int @id @unique
+  refreshToken String
 }
