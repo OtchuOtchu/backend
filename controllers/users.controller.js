@@ -14,7 +14,7 @@ async function getUser(req, res) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    res.json(userData);
+    res.status(200).json(userData);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -37,7 +37,7 @@ async function updateUser(req, res) {
     });
     console.log(updateUser);
 
-    res.json(updatedUser);
+    res.status(200).json(updatedUser);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to update user information" });
