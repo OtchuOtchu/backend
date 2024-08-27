@@ -2,13 +2,14 @@
 //getUser(req, res): 사용자 정보 가져오기
 //updateUser(req, res): 사용자 정보 수정
 
-const user = require("../models/users.model");
+const userModel = require("../models/users.model");
 
 async function getUser(req, res) {
   try {
-    const userId = Number(req.params.userId);
-    const userData = await user.getUserData(userId);
-    console.log(userData);
+    // JWT 미들웨어에서 추출한 uid 사용
+    const uid = req.uid;
+
+    const userData = await userModel.getUserData(uid);
 
     if (!userData) {
       return res.status(404).json({ error: "User not found" });
@@ -23,11 +24,12 @@ async function getUser(req, res) {
 
 async function updateUser(req, res) {
   try {
-    const userId = Number(req.params.userId);
+    // JWT 미들웨어에서 추출한 uid 사용
+    const uid = req.uid;
     const userData = req.body;
 
-    const updatedUser = await user.updateUserData({
-      userId: userId,
+    const updatedUser = await userModel.updateUserData({
+      uid: uid,
       name: userData.name,
       email: userData.email,
       height: userData.height,
@@ -35,7 +37,6 @@ async function updateUser(req, res) {
       style: userData.style,
       sex: userData.sex,
     });
-    console.log(updateUser);
 
     res.status(200).json(updatedUser);
   } catch (error) {
