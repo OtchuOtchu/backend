@@ -41,6 +41,7 @@ function refresh() {
   });
 }
 
+// refresh token 검증
 async function refreshVerify(token, uid) {
   // refresh token 검증
   /* redis 모듈은 기본적으로 promise를 반환하지 않으므로,
