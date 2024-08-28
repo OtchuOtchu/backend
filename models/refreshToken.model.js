@@ -22,4 +22,13 @@ async function getRefreshToken(uid) {
   return getRefreshToken;
 }
 
-module.exports = { postRefreshToken, getRefreshToken };
+async function deleteRefreshToken(refreshToken) {
+  const deleteRefreshToken = await prisma.refreshToken.delete({
+    where: {
+      refreshToken: refreshToken,
+    },
+  });
+  return deleteRefreshToken;
+}
+
+module.exports = { postRefreshToken, getRefreshToken, deleteRefreshToken };
