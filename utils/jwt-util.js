@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const refreshTokenModel = require("../models/refreshToken.model");
 
-const secret = process.env.SECRET;
+const secret = process.env.JWT_SECRET;
 
 // access token 발급
 function sign(uid) {
