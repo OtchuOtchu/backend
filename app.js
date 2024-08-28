@@ -13,7 +13,10 @@ const styleSetsRouter = require("./routes/styleSets.router");
 const loginRouter = require("./routes/login.router");
 const refreshRouter = require("./routes/refresh.router");
 
+const cors = require("cors");
+
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:5173" }));
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
