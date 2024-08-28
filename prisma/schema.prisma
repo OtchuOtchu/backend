@@ -13,7 +13,7 @@ datasource db {
 }
 
 model User {
-  uid    Int    @id  
+  uid    String    @id  
   name String
   email String @unique
   height Int
@@ -28,7 +28,7 @@ model User {
 model StyleSets {
   id Int @id @default(autoincrement())
   user User @relation(fields: [userId], references: [uid])
-  userId Int 
+  userId String 
   createdAt DateTime @default(now())
   weather String
   styleCapture StyleCapture[]
@@ -57,7 +57,7 @@ model Clothes {
 
 model Favourites {
   user User @relation(fields: [userId], references: [uid])
-  userId Int 
+  userId String 
   clothing Clothes @relation(fields: [clothingId], references: [id])
   clothingId Int 
   @@id([userId, clothingId])
@@ -65,6 +65,6 @@ model Favourites {
 
 model RefreshToken {
   user User @relation(fields: [userId], references: [uid])
-  userId Int @id @unique
+  userId String @id @unique
   refreshToken String
 }
