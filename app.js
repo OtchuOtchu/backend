@@ -16,7 +16,13 @@ const refreshRouter = require("./routes/refresh.router");
 const cors = require("cors");
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(
+  cors({
+    origin: "http://localhost:5173", // 프론트엔드가 실행되는 도메인
+    methods: ["GET", "POST"], // 허용할 HTTP 메소드
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
