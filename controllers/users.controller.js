@@ -62,10 +62,12 @@ async function postUser(req, res) {
     });
     console.log(postUser);
 
-    res.status(200).json(postUser);
+    res.status(200).send({ ok: true, message: "signIn success" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to post user information" });
+    res
+      .status(500)
+      .json({ ok: false, message: "Failed to post user information" });
   }
 }
 

@@ -1,6 +1,5 @@
-const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
-const refreshTokenModel = require("../utils/refreshToken.model");
+const refreshTokenModel = require("../models/refreshToken.model");
 
 const secret = process.env.SECRET;
 
@@ -41,7 +40,7 @@ function refresh() {
 // refresh token 검증
 async function refreshVerify(token, uid) {
   // refresh token 검증
-try {
+  try {
     const data = await refreshTokenModel.getRefreshToken(uid); // refresh token 가져오기
     if (token === data) {
       try {

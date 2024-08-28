@@ -1,8 +1,8 @@
 const jwt = require("../utils/jwt-util");
 // const redisClient = require("../utils/redis");
 const firebase = require("../utils/firebase");
-const loginModel = require("../utils/login.model");
-const refreshTokenModel = require("../utils/refreshToken.model");
+const loginModel = require("../models/login.model");
+const refreshTokenModel = require("../models/refreshToken.model");
 
 async function login(req, res) {
   const idToken = req.headers.authorization.split("")[1];
