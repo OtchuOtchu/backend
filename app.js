@@ -11,6 +11,7 @@ const clothesRouter = require("./routes/clothes.router");
 const favouritesRouter = require("./routes/favourites.router");
 const styleSetsRouter = require("./routes/styleSets.router");
 const loginRouter = require("./routes/login.router");
+const logoutRouter = require("./routes/logout.router");
 const refreshRouter = require("./routes/refresh.router");
 
 const cors = require("cors");
@@ -33,6 +34,7 @@ app.use("/api/clothes", clothesRouter);
 app.use("/api/favourites", favouritesRouter);
 app.use("/api/styleSets", styleSetsRouter);
 app.use("/api/login", loginRouter);
+app.use("/api/logout", logoutRouter);
 app.use("/api/refresh", refreshRouter);
 
 app.listen(PORT, () => {
